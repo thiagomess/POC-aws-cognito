@@ -40,6 +40,9 @@ def lambda_handler(event, context):
     except client.exceptions.UserNotFoundException as e:
         return returnResponse(404, 'Usuario nao existe.')
 
+    except client.exceptions.InvalidParameterException as e:
+        return returnResponse(422, 'Usuario já validado.')
+
     except client.exceptions.LimitExceededException as e:
         return returnResponse(422, 'Limite de email diario atingido.')
 
